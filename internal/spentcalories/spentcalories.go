@@ -37,12 +37,18 @@ func parseTraining(data string) (int, string, time.Duration, error) {
 	if err != nil {
 		return 0, "", 0, ErrInvalidData
 	}
+	if steps <= 0 {
+		return 0, "", 0, ErrZeroSteps
+	}
 
 	activity := slice[1]
 
 	duration, err := time.ParseDuration(slice[2])
 	if err != nil {
 		return 0, "", 0, ErrInvalidData
+	}
+	if duration <= 0 {
+		return 0, "", 0, ErrZeroDuration
 	}
 
 	return steps, activity, duration, nil
@@ -54,7 +60,7 @@ func distance(steps int, height float64) float64 {
 
 func meanSpeed(steps int, height float64, duration time.Duration) float64 {
 	durationInHours := duration.Hours()
-	if durationInHours == 0 {
+	if durationInHours <= 0 {
 		return 0
 	}
 
