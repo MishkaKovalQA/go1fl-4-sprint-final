@@ -24,7 +24,7 @@ var (
 	ErrZeroWeight      = errors.New("weight must be greater than zero")
 	ErrZeroHeight      = errors.New("height must be greater than zero")
 	ErrZeroDuration    = errors.New("duration must be greater than zero")
-	ErrUnknownActivity = errors.New("unknown activity type")
+	ErrUnknownActivity = errors.New("неизвестный тип тренировки")
 )
 
 func parseTraining(data string) (int, string, time.Duration, error) {
