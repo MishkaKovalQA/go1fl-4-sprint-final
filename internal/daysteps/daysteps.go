@@ -1,7 +1,9 @@
 package daysteps
 
 import (
+	"errors"
 	"time"
+	"strings"
 )
 
 const (
@@ -11,8 +13,15 @@ const (
 	mInKm = 1000
 )
 
+var (
+	ErrInvalidData = errors.New("invalid data format")
+)
+
 func parsePackage(data string) (int, time.Duration, error) {
-	// TODO: реализовать функцию
+	slice := strings.Split(data, ",")
+	if len(slice) != 2 {
+		return 0, 0, ErrInvalidData
+	}
 }
 
 func DayActionInfo(data string, weight, height float64) string {
