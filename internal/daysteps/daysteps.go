@@ -30,7 +30,7 @@ func parsePackage(data string) (int, time.Duration, error) {
 
 	steps, err := strconv.Atoi(slice[0])
 	if err != nil {
-		return 0, 0, ErrInvalidData
+		return 0, 0, fmt.Errorf("invalid steps format: %w", err)
 	}
 	if steps <= 0 {
 		return 0, 0, ErrInvalidData
